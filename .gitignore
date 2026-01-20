@@ -1,0 +1,14 @@
+# Binary
+devspace-mcp
+
+# Coverage
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
