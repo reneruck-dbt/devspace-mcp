@@ -388,7 +388,7 @@ mcp.WithDescription("Builds images and pushes them. Note: This operation may tak
 
 ### 9. Missing Health Check / Status Command
 
-**Status:** ✅ Feasible
+**Status:** ✅ Feasible | ✅ IMPLEMENTED
 
 **Problem:** No quick way to check if devspace environment is healthy
 

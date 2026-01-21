@@ -42,4 +42,7 @@ func RegisterAll(s *server.MCPServer) {
 
 	// Pods tool (kubectl wrapper)
 	s.AddTool(DevspaceListPodsTool(), DevspaceListPodsHandler)
+
+	// Status tool (composite)
+	s.AddTool(DevspaceStatusTool(), DevspaceStatusHandler)
 }
