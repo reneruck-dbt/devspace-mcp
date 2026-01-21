@@ -71,7 +71,7 @@ func DevspaceBuildHandler(ctx context.Context, req mcp.CallToolRequest) (*mcp.Ca
 	result := executor.ExecuteWithOptions(ctx, executor.LongRunningTimeout, workingDir, args...)
 
 	if !result.Success() {
-		return mcp.NewToolResultError(result.FormatOutput()), nil
+		return mcp.NewToolResultError(EnhanceError(result)), nil
 	}
 
 	return mcp.NewToolResultText(result.FormatOutput()), nil

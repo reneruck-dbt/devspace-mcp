@@ -80,7 +80,7 @@ func DevspaceListPodsHandler(ctx context.Context, req mcp.CallToolRequest) (*mcp
 	result := executeKubectl(ctx, args...)
 
 	if !result.Success() {
-		return mcp.NewToolResultError(result.FormatOutput()), nil
+		return mcp.NewToolResultError(EnhanceError(result)), nil
 	}
 
 	return mcp.NewToolResultText(result.FormatOutput()), nil

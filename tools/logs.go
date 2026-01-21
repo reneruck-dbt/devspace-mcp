@@ -77,7 +77,7 @@ func DevspaceLogsHandler(ctx context.Context, req mcp.CallToolRequest) (*mcp.Cal
 	result := executor.ExecuteInDir(ctx, workingDir, args...)
 
 	if !result.Success() {
-		return mcp.NewToolResultError(result.FormatOutput()), nil
+		return mcp.NewToolResultError(EnhanceError(result)), nil
 	}
 
 	return mcp.NewToolResultText(result.FormatOutput()), nil

@@ -295,7 +295,7 @@ func KubectlPortForwardTool() mcp.Tool {
 
 ### 7. Error Messages Lack Context
 
-**Status:** ✅ Feasible
+**Status:** ✅ Feasible | ✅ IMPLEMENTED
 
 **Problem:** AWS SSO expiration shows as generic "kube config" error
 
