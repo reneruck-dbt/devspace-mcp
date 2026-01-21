@@ -39,4 +39,7 @@ func RegisterAll(s *server.MCPServer) {
 
 	// Exec tool
 	s.AddTool(DevspaceExecTool(), DevspaceExecHandler)
+
+	// Pods tool (kubectl wrapper)
+	s.AddTool(DevspaceListPodsTool(), DevspaceListPodsHandler)
 }

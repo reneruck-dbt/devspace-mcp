@@ -101,7 +101,7 @@ func DevspaceAnalyzeHandler(ctx context.Context, request mcp.CallToolRequest) (*
 
 ### 3. No Pod Listing Capability
 
-**Status:** ✅ Feasible (with kubectl)
+**Status:** ✅ Feasible (with kubectl) | ✅ IMPLEMENTED
 
 **Problem:** No `devspace list pods` command exists
 
@@ -146,7 +146,7 @@ Not recommended - analyze doesn't expose pod list directly.
 
 ### 4. No Exec/Shell Capability
 
-**Status:** ✅ Feasible
+**Status:** ✅ Feasible | ✅ IMPLEMENTED
 
 **Problem:** Can't run commands inside pods
 
