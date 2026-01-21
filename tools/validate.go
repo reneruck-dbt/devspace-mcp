@@ -2,6 +2,8 @@ package tools
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -41,4 +43,25 @@ func isValidCommandChar(r rune) bool {
 		(r >= 'A' && r <= 'Z') ||
 		(r >= '0' && r <= '9') ||
 		r == '-' || r == '_' || r == ':'
+}
+
+// ValidateDevspaceYaml checks if devspace.yaml exists in the specified directory
+// If workingDir is empty, uses current directory
+func ValidateDevspaceYaml(workingDir string) error {
+	if workingDir == "" {
+		var err error
+		workingDir, err = os.Getwd()
+		if err != nil {
+			return fmt.Errorf("could not determine current directory: %w", err)
+		}
+	}
+
+	configPath := filepath.Join(workingDir, "devspace.yaml")
+	if _, err := os.Stat(configPath); os.IsNotExist(err) {
+		return fmt.Errorf("devspace.yaml not found in %s. Use working_dir parameter to specify the project location", workingDir)
+	} else if err != nil {
+		return fmt.Errorf("error checking devspace.yaml: %w", err)
+	}
+
+	return nil
 }

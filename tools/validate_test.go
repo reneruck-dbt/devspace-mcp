@@ -1,6 +1,8 @@
 package tools
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -165,6 +167,69 @@ func TestIsValidCommandChar(t *testing.T) {
 	for _, c := range invalidChars {
 		if isValidCommandChar(c) {
 			t.Errorf("isValidCommandChar(%q) = true, want false", c)
+		}
+	}
+}
+
+func TestValidateDevspaceYaml(t *testing.T) {
+	// Create a temporary directory for testing
+	tempDir := t.TempDir()
+
+	tests := []struct {
+		name       string
+		workingDir string
+		createFile bool
+		wantErr    bool
+	}{
+		{
+			name:       "devspace.yaml exists",
+			workingDir: tempDir,
+			createFile: true,
+			wantErr:    false,
+		},
+		{
+			name:       "devspace.yaml does not exist",
+			workingDir: tempDir,
+			createFile: false,
+			wantErr:    true,
+		},
+		{
+			name:       "invalid directory",
+			workingDir: filepath.Join(tempDir, "nonexistent"),
+			createFile: false,
+			wantErr:    true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Setup: create devspace.yaml if needed
+			if tt.createFile {
+				configPath := filepath.Join(tt.workingDir, "devspace.yaml")
+				if err := os.WriteFile(configPath, []byte("version: v2beta1"), 0644); err != nil {
+					t.Fatalf("failed to create test file: %v", err)
+				}
+				defer os.Remove(configPath)
+			}
+
+			err := ValidateDevspaceYaml(tt.workingDir)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("ValidateDevspaceYaml() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestValidateDevspaceYamlWithCurrentDir(t *testing.T) {
+	// Test with empty working_dir (should use current directory)
+	// This will likely fail since we're not in a devspace project
+	err := ValidateDevspaceYaml("")
+	if err == nil {
+		t.Log("ValidateDevspaceYaml with empty dir succeeded (devspace.yaml exists in test dir)")
+	} else {
+		// Expected to fail in most test environments
+		if err.Error() == "" {
+			t.Error("ValidateDevspaceYaml should return a descriptive error message")
 		}
 	}
 }

@@ -23,7 +23,7 @@ This document analyzes the feasibility of implementing features requested in use
 
 ### 1. Inconsistent working_dir Requirement
 
-**Status:** ✅ Feasible
+**Status:** ✅ Feasible | ✅ IMPLEMENTED
 
 **Problem:** Some tools work without `working_dir`, others fail with "Cannot find a devspace.yaml"
 
