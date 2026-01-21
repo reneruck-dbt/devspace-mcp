@@ -13,7 +13,7 @@ import (
 // DevspaceAnalyzeTool returns the tool definition for analyzing a namespace
 func DevspaceAnalyzeTool() mcp.Tool {
 	return mcp.NewTool("devspace_analyze",
-		mcp.WithDescription("Analyze a Kubernetes namespace for potential problems and issues"),
+		mcp.WithDescription("Analyze a Kubernetes namespace for potential problems and issues. Note: When everything is healthy, output may be minimal as DevSpace focuses on reporting problems."),
 		mcp.WithString("namespace",
 			mcp.Description("Kubernetes namespace to analyze"),
 		),
@@ -22,6 +22,12 @@ func DevspaceAnalyzeTool() mcp.Tool {
 		),
 		mcp.WithBoolean("wait",
 			mcp.Description("Wait for pods to be ready before analyzing (default: true)"),
+		),
+		mcp.WithBoolean("patient",
+			mcp.Description("Wait for all resources to be ready before reporting issues"),
+		),
+		mcp.WithBoolean("ignore_pod_restarts",
+			mcp.Description("Ignore restart events of running pods"),
 		),
 		mcp.WithNumber("timeout",
 			mcp.Description("Timeout in seconds (default: 120, max: 600)"),
@@ -53,6 +59,16 @@ func DevspaceAnalyzeHandler(ctx context.Context, req mcp.CallToolRequest) (*mcp.
 	allArgs := req.GetArguments()
 	if _, exists := allArgs["wait"]; exists && !req.GetBool("wait", true) {
 		args = append(args, "--wait=false")
+	}
+
+	// Add patient flag if specified
+	if req.GetBool("patient", false) {
+		args = append(args, "--patient")
+	}
+
+	// Add ignore-pod-restarts flag if specified
+	if req.GetBool("ignore_pod_restarts", false) {
+		args = append(args, "--ignore-pod-restarts")
 	}
 
 	timeout := executor.DefaultTimeout
