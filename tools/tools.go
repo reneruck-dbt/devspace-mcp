@@ -36,4 +36,7 @@ func RegisterAll(s *server.MCPServer) {
 
 	// Run tool
 	s.AddTool(DevspaceRunTool(), DevspaceRunHandler)
+
+	// Exec tool
+	s.AddTool(DevspaceExecTool(), DevspaceExecHandler)
 }

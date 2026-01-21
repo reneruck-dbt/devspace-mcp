@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__taily__tavily_search",
+      "mcp__taily__tavily_extract",
+      "mcp__taily__tavily_crawl",
+      "Bash(devspace --help:*)",
+      "mcp__github__search_repositories",
+      "Bash(go mod init:*)",
+      "Bash(go mod tidy:*)",
+      "Bash(go build:*)",
+      "Bash(devspace version:*)",
+      "Bash(./devspace-mcp:*)",
+      "Bash(printf:*)",
+      "Bash(go test:*)",
+      "Bash(make help:*)",
+      "Bash(make test:*)",
+      "Bash(make build:*)",
+      "Bash(make fmt-check:*)",
+      "Bash(make vet:*)",
+      "Bash(make test-coverage-func:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(devspace: *)",
+      "Bash(devspace list:*)",
+      "Bash(devspace enter:*)",
+      "Bash(devspace dev:*)",
+      "Bash(devspace sync:*)",
+      "Bash(devspace logs:*)",
+      "Bash(devspace analyze:*)",
+      "Bash(devspace attach:*)",
+      "Bash(devspace build:*)",
+      "Bash(devspace deploy:*)",
+      "Bash(devspace purge:*)",
+      "Bash(devspace run:*)",
+      "Bash(devspace run-pipeline:*)",
+      "Bash(devspace print:*)",
+      "Bash(devspace restart:*)"
+    ]
+  }
+}
