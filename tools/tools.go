@@ -45,4 +45,7 @@ func RegisterAll(s *server.MCPServer) {
 
 	// Status tool (composite)
 	s.AddTool(DevspaceStatusTool(), DevspaceStatusHandler)
+
+	// Ports tool
+	s.AddTool(DevspaceListPortsTool(), DevspaceListPortsHandler)
 }

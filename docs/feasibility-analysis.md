@@ -245,7 +245,7 @@ func DevspaceRunPipelineTool() mcp.Tool {
 
 ### 6. No Port-Forward Capability
 
-**Status:** ⚠️ Partially Feasible
+**Status:** ⚠️ Partially Feasible | ✅ LIST IMPLEMENTED
 
 **Problem:** Can't expose services locally for debugging
 
