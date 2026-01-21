@@ -466,7 +466,7 @@ func DevspaceStatusHandler(ctx context.Context, request mcp.CallToolRequest) (*m
 
 ### 10. Log Filtering Options Limited
 
-**Status:** ⚠️ Partially Feasible
+**Status:** ⚠️ Partially Feasible | ✅ IMPLEMENTED
 
 **Problem:** Can't filter by log level, search within logs, or get multi-container logs
 
